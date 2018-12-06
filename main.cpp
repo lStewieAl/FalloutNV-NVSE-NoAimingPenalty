@@ -28,9 +28,17 @@ extern "C" {
 
 
 void patchAimingChecks() {
+	/* keyboard support */
 	UInt32 isMeleeAimingAddr = 0x941A82;
 	UInt32 isWeaponAimingAddr = 0x941AA8;
 
+	SafeWrite16(isMeleeAimingAddr, 0x9090);
+	SafeWrite16(isWeaponAimingAddr, 0x9090);
+
+	/* controller support */
+	isMeleeAimingAddr = 0x94171B;
+	isWeaponAimingAddr = 0x941741;
+	
 	SafeWrite16(isMeleeAimingAddr, 0x9090);
 	SafeWrite16(isWeaponAimingAddr, 0x9090);
 }

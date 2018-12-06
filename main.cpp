@@ -28,22 +28,11 @@ extern "C" {
 
 
 void patchAimingChecks() {
-  // Set the NPC flag on the AND, so it always evaluates false for the player
+	UInt32 isMeleeAimingAddr = 0x941A82;
+	UInt32 isWeaponAimingAddr = 0x941AA8;
 
-  // When moving between left/right, front/back
-  //0x492F33 - and edx,00000240
-  UInt32 isAimingCheckAddrAnd = 0x492F33;
-  SafeWriteBuf(isAimingCheckAddrAnd, "\x81\xE2\x40\x02\x00\x00", 6);
-
-  // Forward/Sideward movement
-  //0x896B8C - and eax,00000200
-  isAimingCheckAddrAnd = 0x896B8C;
-  SafeWriteBuf(isAimingCheckAddrAnd, "\x25\x40\x02\x00\x00", 5);
-
-  // Diagonal movement
-  //0x8A0B46 - and eax,00000200
-  isAimingCheckAddrAnd = 0x8A0B46;
-  SafeWriteBuf(isAimingCheckAddrAnd, "\x25\x40\x02\x00\x00", 5);
+	SafeWrite16(isMeleeAimingAddr, 0x9090);
+	SafeWrite16(isWeaponAimingAddr, 0x9090);
 }
 
 
